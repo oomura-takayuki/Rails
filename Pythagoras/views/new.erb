@@ -1,0 +1,29 @@
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>ピタゴラス（三平方の定理）プログラム</title>
+</head>
+
+<body>
+    <p>ピタゴラス（三平方の定理）プログラム<br>
+        三平方の定理は、直角三角形の3つの辺について、直角をはさむ2つの辺の長さをそれぞれ a と b、斜辺の長さを c としたとき、<br>
+        以下のような関係が成り立つという公式です。<br>
+        cの二乗 = aの二乗 + bの二乗<br>
+        以下の仕様を満たすように、Rubyファイルを作成してください<br>
+        <br>
+        仕様<br>
+        ・GETパラメータを2つ使用（aとb）<br>
+        ・phpではこの2つの辺の長さを取得し、三平方の定理を使って cの二乗 を求める<br>
+        ・平方根のcを求め、以下のように画面に表示する<br>
+        ex.直角をはさむ2辺の長さが 3.0 と 4.0 のとき、 斜辺の長さは 5.0 になります。
+    </p>
+    <p>==============================================<br>
+        辺aとbの値をそれぞれ入力して下さい。
+        <!--formアクション実行時pythagoras.rbを読み込む-->
+        <form action="calcurate" method="get">
+            <!--数値かつ小数点一桁までのみ入力可能とする-->
+            辺a:<input type="number" name="edge_a" step="0.1" required /><br>
+            辺b:<input type="number" name="edge_b" step="0.1" required /><br>
+            <input type="submit" name="button1" value="送信" /><br>
+        </form>
+    </p>
+</body>
