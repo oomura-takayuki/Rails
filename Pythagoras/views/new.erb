@@ -21,13 +21,9 @@
         <!--formアクション実行時pythagoras.rbを読み込む-->
         <form action="calcurate" method="get">
             <!--数値かつ小数点一桁までのみ入力可能とする-->
-            辺a:<input type="number" name="edge_a" step="0.1" /><br>
-            辺b:<input type="number" name="edge_b" step="0.1" /><br>
+            辺a:<input type="number" name="edge_a" step="0.1" required /><br>
+            辺b:<input type="number" name="edge_b" step="0.1" required /><br>
             <input type="submit" name="button1" value="送信" /><br>
         </form>
-        <% if @edge_c != 0 %>
-        <%# formアクション実行後、@edge_cに0以外の結果が返された場合 %>
-        直角をはさむ2辺の長さが <%=@edge_a%>と<%=@edge_b%>のとき、 斜辺の長さは<%=@edge_c %>です。
-        <% end %>
     </p>
 </body>
