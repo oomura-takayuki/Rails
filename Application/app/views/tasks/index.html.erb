@@ -1,0 +1,26 @@
+<head>
+    <title>一覧表示画面</title>
+</head>
++++
+<body>
+    <h1>タスク一覧</h1>
+
+        <!-- 詳細ボタン-->
+        <div style="display:inline-flex">
+            <form method="GET" action="show.php">
+                <input type="hidden" name="id" value=<%= @id %>>
+                <input type="submit" name="btn1" value="詳細">
+            </form>
+            <!-- 削除ボタン-->
+            <form method="POST" action= "" onsubmit="return delete_confirm()">
+                <input type="hidden" name="delete_id" value=<%= @id %>>
+                <input type="submit" name="button1" value="削除" /><br>
+            </form>
+        </div> <br>
+    <!-- 新規登録画面遷移ボタン -->
+    <form method="GET" action="/index">
+        <input type="submit" name="btn1" value="新規タスクを登録する">
+    </form>
+</body>
+
+</html>
