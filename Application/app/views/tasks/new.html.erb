@@ -1,2 +1,18 @@
-<h1>Tasks#new</h1>
-<p>Find me in app/views/tasks/new.html.erb</p>
+<script>
+  // 登録ボタン押下時のアラート表示用関数
+  function register_alert() {
+          let result = alert("入力内容を新規登録しました");
+          return result;
+  }
+</script>
+<h1>新規登録</h1>
+<br>
+※id、登録日時、更新日時は自動採番<br>
+<%= form_with url: "/tasks", method: :POST, local: true  do |form| %>
+  タスク内容<%= form.text_field :task_contents%>
+  <%= form.submit '登録'%>
+<% end %>
+<!-- 一覧表示画面遷移ボタン -->
+<%= form_with url: "/", method: :GET, local: true do |form| %>
+  <%= form.submit '一覧表示画面へ戻る' %>
+<% end %>
