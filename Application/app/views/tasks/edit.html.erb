@@ -1,23 +1,12 @@
 <h1>タスク編集</h1>
 <!-- 更新ボタン -->
-<form method="POST" action= >
-  <!-- 更新処理実行後はボタンが消えるように設定 -->
-  タスク内容:<input type="text" name="task_contents" value=<%= @tasks_select.task_contents %> ><br>
-  <input type="hidden" name="update_id" value= <%=@id%>>
-  <input type="submit" name="button1" value="更新" /><br>
-</form>
 <%= form_with url: "/tasks/"+ @update_id, method: :PUT, local: true do |form| %>
-  <%# @tasks_select.task_contents.to_str %>
-  タスク内容<%= form.text_field :tasks_select ,@tasks_select.task_contents.to_str%>
-  <%= form.hidden_field_tag :update_id , @update_id.to_str %>
+  <%# @tasks_select.task_contents.to_hash %>
+  タスク内容<%= form.text_field :tasks_select %>
+  <%# <%= form.hidden_field_tag :update_id , @update_id %>
   <%= form.submit '更新する' %>
 <% end %>
 <!-- 詳細画面遷移ボタン -->
-<%= form_with url: "/tasks/show", method: :GET, local: true do |form| %>
-  <%= hidden_field_tag :select_id, @update_id %>
-  <%= form.submit '詳細画面へ戻る' %>
-<% end %>
+<%= button_to '詳細画面へ戻る', "/tasks/:id", {method: :get,params: {select_id:@update_id}}%>
 <!-- 一覧表示画面遷移ボタン -->
-<%= form_with url: "/", method: :GET, local: true do |form| %>
-  <%= form.submit '一覧表示画面へ戻る' %>
-<% end %>
+<%= button_to '一覧表示画面へ戻る', root_path, method: :get %>

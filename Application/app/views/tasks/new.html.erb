@@ -13,6 +13,4 @@
   <%= form.submit '登録'%>
 <% end %>
 <!-- 一覧表示画面遷移ボタン -->
-<%= form_with url: "/", method: :GET, local: true do |form| %>
-  <%= form.submit '一覧表示画面へ戻る' %>
-<% end %>
+<%= button_to '一覧表示画面へ戻る', root_path, method: :get %>

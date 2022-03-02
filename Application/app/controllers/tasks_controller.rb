@@ -9,9 +9,9 @@ class TasksController < ApplicationController
 
   def show
     # index.html.erb及びedit.html.erbからgetで渡されたselect_idを取得
-    @id = params[:select_id]
+    @select_id = params[:select_id]
     # tasksテーブルからidとselect_idが一致するレコードを取得
-    @tasks_select = Task.find(@id)
+    @tasks_select = Task.find(@select_id)
   end
 
   def new
