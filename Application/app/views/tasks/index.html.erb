@@ -5,12 +5,15 @@
   <%= task.created_date.to_s(:datetime_jp) %>|
   <%= task.updated_date.to_s(:datetime_jp) %>|
   <div style="display:inline-flex">
-    <!-- 詳細画面遷移ボタン-->
+    <%# 詳細画面遷移ボタン %>
     <%= button_to '詳細', "/tasks/#{task.id}", method: :get%>
-    <!-- 削除ボタン-->
+    <%# 削除ボタン %>
     <%= button_to "削除", "/tasks/#{task.id}", method: :delete %>
   </div>
   <br>
 <% end %>
-<!-- 新規登録画面遷移ボタン -->
+<%# 削除実施時のflashメッセージの表示 %>
+<%= flash[:success] %>
+<%= flash[:danger] %>
+<%# 新規登録画面遷移ボタン %>
 <%= button_to '新規タスクを登録する', new_task_path, method: :get %>

@@ -1,19 +1,15 @@
-<script>
-  // 登録ボタン押下時のアラート表示用関数
-  function register_alert() {
-          let result = alert("入力内容を新規登録しました");
-          return result;
-  }
-</script>
 <h1>新規登録</h1>
 <br>
 ※id、登録日時、更新日時は自動採番<br>
-<%# 新規登録 %>
+<%# 新規登録ボタン %>
 <%= form_with model: @task do |form| %>
   タスク内容<%= form.text_field :task_contents %>
   <%= form.hidden_field :created_date, :value => Time.zone.now%>
   <%= form.hidden_field :updated_date, :value => Time.zone.now%>
   <%= form.submit '登録'%>
 <% end %>
-<!-- 一覧表示画面遷移ボタン -->
+<%# 新規登録実施時のflashメッセージの表示 %>
+<%= flash[:success] %>
+<%= flash[:danger] %>
+<%# 一覧表示画面遷移ボタン %>
 <%= button_to '一覧表示画面へ戻る', root_path, method: :get %>

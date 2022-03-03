@@ -5,18 +5,15 @@ class TasksController < ApplicationController
   def index
     # tasksテーブルのデータを全取得
     @tasks = Task.all
-    @task = Task.new
   end
 
   def show
-    # index.html.erb及びedit.html.erbからgetで渡されたselect_idを取得
-    @select_id = params[:id]
-    # tasksテーブルからidとselect_idが一致するレコードを取得
-    @tasks_select = Task.find(@select_id)
+    # index.html.erb及びedit.html.erbからgetで渡されたidを元に一致するレコードを取得
+    @tasks_select = Task.find(params[:id])
   end
 
   def new
-    # モデルのインスタンス
+    # viewで使用する為にモデルのインスタンス生成
     @task = Task.new
   end
 
@@ -26,47 +23,56 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     # @taskモデルに対する保存処理
     if @task.save
-      #new.html.erbへリダイレクト
+      # flashメッセージの指定
+      flash[:success] = "登録に成功しました"
+      # new.html.erbへリダイレクト
       redirect_to :action => "new"
     else
       # DBへの保存が失敗した場合
       @task = Task.new(task_params)
-      # 保存直前から読み込む為renderを使用
+      # flashメッセージの指定
+      flash[:danger] = "登録に失敗しました"
+      # 登録直前から読み込む為renderを使用
       render "new"
     end
   end
 
   def edit
-    # # # show.html.erbからgetで渡されたupdate_idを取得
-    # @update_id = params[:update_id]
-    # モデルのインスタンス(idとupdate_idが一致するレコードが格納されている)を生成
-    @task = Task.find(params[:update_id])
+    # show.html.erbからgetで渡されたidを元に一致するレコードを取得
+    @task = Task.find(params[:id])
   end
 
   def update
-    # form with の入力値をストロングパラメータtask_paramsを介して取得
-    # @task = Task.new(task_params)
-    # @tasks = Task.find(@task.id)
-    # @update_id = @task.id
-    # @tasks_select = Task.find(@update_id)
-
-    # @taskモデルに対する保存処理
+    # edit.html.erbからputで渡されたidを元に一致するレコードを取得
+    @task = Task.find(params[:id])
+    # @taskモデルに対する更新処理
     if @task.update(task_params)
-      #edit.html.erbへリダイレクト
+      # flashメッセージの指定
+      flash[:success] = "更新に成功しました"
+      # edit.html.erbへリダイレクト
       redirect_to :action => "edit"
     else
       # DBへの保存が失敗した場合
-      @task = Task.new(task_params)
-      # 保存直前から読み込む為renderを使用
+      @task = Task.find(params[:id])
+      # flashメッセージの指定
+      flash[:danger] = "更新に失敗しました"
+      # 更新直前から読み込む為renderを使用
       render "edit"
     end
-    # @task.update(task_contents: @task.task_contents, updated_date: @task.updated_date)
-    # render :action => "edit"
   end
 
   def destroy
+    # index.html.erb及びshow.html.erbからgetで渡されたidを元に一致するレコードを取得
     @task = Task.find(params[:id])
-    @task.destroy
+    # @taskモデルに対する削除処理
+    if @task.destroy
+      # flashメッセージの指定
+      flash[:success] = "削除に成功しました"
+    else
+      # flashメッセージの指定
+      flash[:danger] = "削除に失敗しました"
+    end
+    # index.html.erbへリダイレクト
     redirect_to :action => "index"
   end
 
