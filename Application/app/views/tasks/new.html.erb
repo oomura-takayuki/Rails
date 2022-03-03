@@ -8,8 +8,11 @@
 <h1>新規登録</h1>
 <br>
 ※id、登録日時、更新日時は自動採番<br>
-<%= form_with url: "/tasks", method: :POST, local: true  do |form| %>
-  タスク内容<%= form.text_field :task_contents%>
+<%# 新規登録 %>
+<%= form_with model: @task do |form| %>
+  タスク内容<%= form.text_field :task_contents %>
+  <%= form.hidden_field :created_date, :value => Time.zone.now%>
+  <%= form.hidden_field :updated_date, :value => Time.zone.now%>
   <%= form.submit '登録'%>
 <% end %>
 <!-- 一覧表示画面遷移ボタン -->

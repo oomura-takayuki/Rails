@@ -10,8 +10,9 @@ Rails.application.routes.draw do
   resources :tasks
   # rootに対してはindexアクションを呼び出すように設定
   root :to => "tasks#index"
-  # post 'profile', to: 'users#show'
-  # post "tasks/:id/edit" => "tasks#edit"
+  post "tasks/:id/edit" => "tasks#edit"
+  post "/tasks/new" => "tasks#new"
+  # delete "task/:id" => "tasks#destroy"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
 end

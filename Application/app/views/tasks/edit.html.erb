@@ -1,12 +1,22 @@
 <h1>タスク編集</h1>
-<!-- 更新ボタン -->
-<%= form_with url: "/tasks/"+ @update_id, method: :PUT, local: true do |form| %>
+<%# <%= form_with url: "/tasks/"+ @update_id, method: :PUT, local: true do |form| %>
   <%# @tasks_select.task_contents.to_hash %>
-  タスク内容<%= form.text_field :tasks_select %>
-  <%# <%= form.hidden_field_tag :update_id , @update_id %>
-  <%= form.submit '更新する' %>
-<% end %>
-<!-- 詳細画面遷移ボタン -->
-<%= button_to '詳細画面へ戻る', "/tasks/:id", {method: :get,params: {select_id:@update_id}}%>
-<!-- 一覧表示画面遷移ボタン -->
-<%= button_to '一覧表示画面へ戻る', root_path, method: :get %>
+  <%# タスク内容<%= form.text_field :tasks_select, @tasks_select.task_contents%>
+  <%# <%= form.hidden_field :id ,:value => @update_id %>
+  <%# <%= form.hidden_field :updated_date, :value => Time.zone.now%>
+  <%# <%= form.submit '更新する' %>
+  <%# <% end %>
+  <!-- 更新ボタン -->
+  <%= form_with model: @task do |form| %>
+    タスク内容<%= form.text_field :task_contents %>
+    <%# <%= form.hidden_field :id, :value => @update_id%>
+    <%= form.hidden_field :created_date, :value => @task.created_date%>
+    <%= form.hidden_field :updated_date, :value => Time.zone.now%>
+    <%= form.submit '登録'%>
+    <%# id確認用 %>
+    <%# <%=@update_id%>
+  <% end %>
+  <!-- 詳細画面遷移ボタン -->
+  <%= button_to '詳細画面へ戻る', "/tasks/:id", {method: :get,params: {select_id:@update_id}}%>
+  <!-- 一覧表示画面遷移ボタン -->
+  <%= button_to '一覧表示画面へ戻る', root_path, method: :get %>
