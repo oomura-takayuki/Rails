@@ -1,0 +1,14 @@
+<h1>タスク詳細</h1>
+<%= @tasks_select.id %>|
+<%= @tasks_select.task_contents %>|
+<%= @tasks_select.created_date.to_s(:datetime_jp) %>|
+<%= @tasks_select.updated_date.to_s(:datetime_jp) %>|
+<div style="display:inline-flex">
+  <%# 削除ボタン %>
+  <%= button_to "削除", task_path, {method: :delete,params:{id:@tasks_select.id}} %>
+</div>
+<%# 編集画面遷移ボタン %>
+<%= button_to '編集画面へ', edit_task_path, {method: :get,params: {id:@tasks_select.id}}%>
+<%# 一覧表示画面遷移ボタン %>
+<%= button_to '一覧表示画面へ戻る', root_path, method: :get %>
+</p>
